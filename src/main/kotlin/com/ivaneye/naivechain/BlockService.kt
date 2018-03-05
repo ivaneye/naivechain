@@ -14,7 +14,7 @@ class BlockService {
     private fun calculateHash(index: Int, previousHash: String?, timestamp: Long, data: String?): String {
         val builder = StringBuilder(index)
         builder.append(previousHash).append(timestamp).append(data)
-        return CryptoUtil.getSHA256(builder.toString())
+        return builder.toString().getSHA256()
     }
 
     val latestBlock: Block
@@ -22,7 +22,7 @@ class BlockService {
 
     private val fristBlock: Block
         get() =
-            Block(1, "0", System.currentTimeMillis(), "Hello Block", "aa212344fc10ea0a2cb885078fa9bc2354e55efc81be8f56b66e4a837157662e")
+            Block(1, "0", System.currentTimeMillis(), "EdenBlock", "816534932c2b7154836da6afc367695e6337db8a921823784c14378abed4f7d7")
 
     fun generateNextBlock(blockData: String): Block {
         val previousBlock = this.latestBlock
