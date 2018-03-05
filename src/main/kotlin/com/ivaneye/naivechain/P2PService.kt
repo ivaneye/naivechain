@@ -8,18 +8,40 @@ import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ClientHandshake
 import java.net.InetSocketAddress
 import org.java_websocket.server.WebSocketServer
+import org.springframework.beans.factory.InitializingBean
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Service
 import java.net.URI
 import java.util.*
 
 
-class P2PService(private val blockService: BlockService) {
+@Service
+class P2PService : InitializingBean{
+    override fun afterPropertiesSet() {
+        initP2PServer(p2pPort)
+        if(peer != null){
+            connectToPeer(peer!!)
+        }
+    }
+
+    @Value("\${config.p2pPort}")
+    private lateinit var p2pPort:String
+
+    @Value("\${config.peer}")
+    private val peer:String? = null
+
+    @Autowired
+    private lateinit var blockService: BlockService
+
     private val sockets: MutableList<WebSocket>
 
     init {
         this.sockets = ArrayList()
     }
 
-    fun initP2PServer(port: Int) {
+    fun initP2PServer(portStr: String) {
+        val port = portStr.toInt()
         val socket = object : WebSocketServer(InetSocketAddress(port)) {
             override fun onOpen(webSocket: WebSocket, clientHandshake: ClientHandshake) {
                 write(webSocket, queryChainLengthMsg())

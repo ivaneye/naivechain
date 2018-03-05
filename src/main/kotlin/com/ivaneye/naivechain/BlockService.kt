@@ -1,13 +1,13 @@
 package com.ivaneye.naivechain
 
+import org.springframework.stereotype.Service
 import java.util.ArrayList
 
-
+@Service
 class BlockService {
-    private var blockChain: MutableList<Block>? = null
+    private var blockChain: MutableList<Block> = ArrayList()
 
     init {
-        this.blockChain = ArrayList()
         blockChain!!.add(this.fristBlock)
     }
 
@@ -80,7 +80,7 @@ class BlockService {
         return true
     }
 
-    fun getBlockChain(): List<Block>? {
+    fun getBlockChain(): List<Block> {
         return blockChain
     }
 }
