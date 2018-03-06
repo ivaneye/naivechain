@@ -1,8 +1,8 @@
 package com.ivaneye.naivechain
 
 data class Block(
-        val index: Int,
-        val previousHash: String,
-        val timestamp: Long,
-        val data: String,
-        val hash: String)
+        val index: Int = 0,
+        val previousHash: String = "",
+        val timestamp: Long = 0,
+        val data: String = "",
+        val hash: String = "")

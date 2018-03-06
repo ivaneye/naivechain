@@ -18,7 +18,7 @@ class KotlinApplication : WebSocketMessageBrokerConfigurer {
     }
 
     override fun configureMessageBroker(registry: MessageBrokerRegistry) {
-        registry.enableSimpleBroker("/msg")
+        registry.enableSimpleBroker("/topic")
     }
 }
 

@@ -8,7 +8,7 @@ class BlockService {
     private var blockChain: MutableList<Block> = ArrayList()
 
     init {
-        blockChain!!.add(this.fristBlock)
+        blockChain.add(this.fristBlock)
     }
 
     private fun calculateHash(index: Int, previousHash: String?, timestamp: Long, data: String?): String {
@@ -70,7 +70,7 @@ class BlockService {
             return false
         }
 
-        for (i in 1..newBlocks.size - 1) {
+        for (i in 1 until newBlocks.size) {
             if (isValidNewBlock(newBlocks[i], fristBlock)) {
                 fristBlock = newBlocks[i]
             } else {

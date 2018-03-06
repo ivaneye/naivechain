@@ -20,7 +20,7 @@ class BlockController {
         return ResponseEntity.ok(blockService.getBlockChain())
     }
 
-    @RequestMapping(value = "/mineBlock", method = [(RequestMethod.POST)])
+    @RequestMapping(value = "/mineBlock", method = [(RequestMethod.GET)])
     fun mineBlock(data: String): ResponseEntity<Block> {
         val newBlock = blockService.generateNextBlock(data)
         blockService.addBlock(newBlock)
@@ -29,17 +29,13 @@ class BlockController {
     }
 
     @RequestMapping(value = "/peers", method = [(RequestMethod.GET)])
-    fun peers(): ResponseEntity<List<String>> {
-        val result = p2pService.getSockets().map {
-            val remoteSocketAddress = it.remoteSocketAddress
-            remoteSocketAddress.hostName + ":" + remoteSocketAddress.port
-        }
-        return ResponseEntity.ok(result)
+    fun peers(): ResponseEntity<String> {
+        return ResponseEntity.ok(p2pService.sessions.toString())
     }
 
-    @RequestMapping(value = "/addPeer", method = [(RequestMethod.POST)])
+    @RequestMapping(value = "/addPeer", method = [(RequestMethod.GET)])
     fun addPeer(peer: String): ResponseEntity<String> {
-        p2pService.connectToPeer(peer)
+        p2pService.conn(peer)
         return ResponseEntity.ok("")
     }
 }
