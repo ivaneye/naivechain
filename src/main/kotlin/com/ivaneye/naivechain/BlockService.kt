@@ -66,7 +66,7 @@ class BlockService {
 
     private fun isValidBlocks(newBlocks: List<Block>): Boolean {
         var fristBlock = newBlocks[0]
-        if (fristBlock == fristBlock) {
+        if (fristBlock != this.fristBlock) {
             return false
         }
 
