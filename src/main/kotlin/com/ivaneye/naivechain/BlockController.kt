@@ -15,12 +15,12 @@ class BlockController {
     @Autowired
     private lateinit var p2pService: P2PService
 
-    @RequestMapping(value = "/blocks", method = [(RequestMethod.GET)])
+    @RequestMapping(value = "/block", method = [(RequestMethod.GET)])
     fun blocks(): ResponseEntity<List<Block>> {
         return ResponseEntity.ok(blockService.getBlockChain())
     }
 
-    @RequestMapping(value = "/mineBlock", method = [(RequestMethod.GET)])
+    @RequestMapping(value = "/block", method = [(RequestMethod.POST)])
     fun mineBlock(data: String): ResponseEntity<Block> {
         val newBlock = blockService.generateNextBlock(data)
         blockService.addBlock(newBlock)
@@ -28,12 +28,12 @@ class BlockController {
         return ResponseEntity.ok(newBlock)
     }
 
-    @RequestMapping(value = "/peers", method = [(RequestMethod.GET)])
+    @RequestMapping(value = "/peer", method = [(RequestMethod.GET)])
     fun peers(): ResponseEntity<String> {
         return ResponseEntity.ok(p2pService.sessions.toString())
     }
 
-    @RequestMapping(value = "/addPeer", method = [(RequestMethod.GET)])
+    @RequestMapping(value = "/peer", method = [(RequestMethod.POST)])
     fun addPeer(peer: String): ResponseEntity<String> {
         p2pService.conn(peer)
         return ResponseEntity.ok("")
