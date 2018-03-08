@@ -6,7 +6,7 @@ kotlin实现的区块链
 - [A blockchain in 200 lines of code](https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54)需翻墙
 - [A blockchain in 200 lines of code（翻译）](http://blog.jobbole.com/110860/)
 - [js版naivechain](https://github.com/lhartikk/naivechain)
-- [Java版naivechain(BlockService 73行判断错了)](https://github.com/sunysen/naivechain)
+- [Java版naivechain(有两处逻辑错误)](https://github.com/sunysen/naivechain)
 
 
 # 启动方式
