@@ -17,3 +17,5 @@ kotlin实现的区块链
 - 通过POST http://localhost:8080/peer来添加节点的互通。body为peer=ws://localhost:8081/endpoint
 - 添加完成后，8080与8081节点即建立了链接
 - 通过POST http://localhost:8080/block来添加区块。body为data=11111
+
+公众号:ivaneye
