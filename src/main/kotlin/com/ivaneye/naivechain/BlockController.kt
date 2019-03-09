@@ -26,7 +26,7 @@ class BlockController {
         // todo 先计算值
         // 从「未确认交易池」取出交易，创建区块
         val newBlock = blockService.generateNextBlock(data)
-        // 假如到自身区块链中
+        // 加入到自身区块链中
         blockService.addBlock(newBlock)
         // 通知其它节点记录该区块
         p2pService.broatcast(p2pService.responseLatestMsg())
