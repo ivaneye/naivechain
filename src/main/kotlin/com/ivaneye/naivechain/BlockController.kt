@@ -22,8 +22,13 @@ class BlockController {
 
     @RequestMapping(value = "/block", method = [(RequestMethod.POST)])
     fun mineBlock(data: String): ResponseEntity<Block> {
+        // data就是交易数据，放入「未确认交易池」
+        // todo 先计算值
+        // 从「未确认交易池」取出交易，创建区块
         val newBlock = blockService.generateNextBlock(data)
+        // 假如到自身区块链中
         blockService.addBlock(newBlock)
+        // 通知其它节点记录该区块
         p2pService.broatcast(p2pService.responseLatestMsg())
         return ResponseEntity.ok(newBlock)
     }
